@@ -106,7 +106,7 @@ class Door extends Sprite {
     handleCollision(otherSprite) {
         if(otherSprite === ann) {
             game.end("Congraulations!\n\nPrincess Ann"
-            + "can now pursue the \nstranger deeper into the castle!");
+            + " can now pursue the \nstranger deeper into the castle!");
         }
     }
 }
@@ -124,9 +124,46 @@ class Spider extends Sprite {
         this.speed = 48;
         this.accelerateOnBounce = false;
         this.defineAnimation("creep", 0, 2);
-        this.playAnimation("creep");
+        this.playAnimation("creep", true);
+    }
+    handleGameLoop() {
+        if(this.y > ann.y + 48) {
+          this.angle = 270;  
+        }
+        if(this.y < ann.y) {
+            this.angle = 90;
+        }
+    }
+    handleCollision(otherSprite) {
+    // Spiders only care about collisons with Ann.
+    if (otherSprite === ann) {
+        // Spiders must hit Ann on top of her head.
+        let horizontalOffset = this.x - otherSprite.x;
+        let verticalOffset = this.y - otherSprite.y;
+        if (Math.abs(horizontalOffset) < this.width / 2 && 
+            Math.abs(verticalOffset) < 30) {
+                otherSprite.y = otherSprite.y + 1; // knock Ann off platform
+            }
+        }
+    return false;
     }
 }
 
 new Spider (200, 225);
 new Spider (550, 200);
+
+class Bat extends Sprite {
+    constructor(x, y){
+        super();
+        this.setImage("bat.png");
+        this.name = "A scary bat";
+        this.x = x;
+        this.y = y;
+        this.accelerateOnBounce = false;
+        this.defineAnimation("flap", 0, 1);
+        this.playAnimation("flap", true);
+    }
+}
+
+let leftBat = new Bat(200, 100);
+let rightBat = new Bat(500, 75);
