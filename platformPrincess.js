@@ -127,10 +127,10 @@ class Spider extends Sprite {
         this.playAnimation("creep", true);
     }
     handleGameLoop() {
-        if(this.y > ann.y + 48) {
+        if (this.y < ann.y - 48) {
           this.angle = 270;  
         }
-        if(this.y < ann.y) {
+        if (this.y > ann.y + 48) {
             this.angle = 90;
         }
     }
@@ -157,11 +157,51 @@ class Bat extends Sprite {
         super();
         this.setImage("bat.png");
         this.name = "A scary bat";
-        this.x = x;
-        this.y = y;
+        this.x = this.startX = x;
+        this.y = this.startY = y;
         this.accelerateOnBounce = false;
         this.defineAnimation("flap", 0, 1);
         this.playAnimation("flap", true);
+        this.attackSpeed = 300;
+        this.speed = this.normalSpeed = 20;
+        this.angle = 45 + Math.round(Math.random() * 3) * 90;
+        this.angleTimer = 0;
+    }
+    attack() {
+        this.speed = this.attackSpeed;
+        this.aimFor(ann.x, ann.y);
+    }
+    handleCollision(otherSprite) {
+        if(otherSprite === ann) {
+             let horizontalOffset = this.x - otherSprite.x;
+        let verticalOffset = this.y - otherSprite.y;
+        if (Math.abs(horizontalOffset) < this.width / 2 && 
+            Math.abs(verticalOffset) < 30) {
+                otherSprite.y = otherSprite.y + 1; // knock Ann off platform
+            }
+        }
+        return false;
+    }
+    handleGameLoop () {
+        if(Math.random() < 0.001) { //if bat is not attacking: hover
+          this.attack();  
+        }
+        if(this.speed == this.normalSpeed) {
+          let now = this.angleTimer();
+          if(now - this.angleTimer >= 5) {
+              
+          }
+        }
+    }
+    handleBoundaryContact () {
+        if(this.y < 0) {
+            this.y === 0;
+        }
+        if(this.y > game.displayHeight) {
+            this.x = this.startX;
+            this.speed = this.normalSpeed;
+            this.angle = 225;
+        }
     }
 }
 
