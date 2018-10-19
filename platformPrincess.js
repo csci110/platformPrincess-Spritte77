@@ -190,9 +190,7 @@ class Bat extends Sprite {
         if(this.speed == this.normalSpeed) {
           if(now - this.angleTimer >= 5)  {
             Math.random() >= 0.50;  this.angle + 90;
-          }
-          if(now - this.angleTimer >=5) {
-              Math.random() < 0.50; this.angle + 180;
+            Math.random() < 0.50; this.angle + 180;
           }
           this.angleTimer = now;
         }
