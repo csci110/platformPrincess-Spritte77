@@ -186,7 +186,7 @@ class Bat extends Sprite {
         if(Math.random() < 0.001) { //if bat is not attacking: hover
           this.attack();  
         }
-        let now = this.angleTimer();
+        let now = game.getTime();
         if(this.speed == this.normalSpeed) {
           if(now - this.angleTimer >= 5)  {
             Math.random() >= 0.50;  this.angle + 90;
@@ -194,6 +194,7 @@ class Bat extends Sprite {
           if(now - this.angleTimer >=5) {
               Math.random() < 0.50; this.angle + 180;
           }
+          this.angleTimer = now;
         }
     }
     handleBoundaryContact () {
