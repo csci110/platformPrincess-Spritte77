@@ -1,0 +1,28 @@
+import {game} from "../sgc/sgc.js";
+
+game.preloadImage("start.png");
+game.preloadImage("finish.png");
+game.preloadImage("door.png");
+game.preloadImage("wall.png");
+game.preloadImage("ann.png", 48, 48);
+game.preloadImage("bat.png", 48, 48);
+game.preloadImage("spider.png", 48, 48);
+game.preloadImage("Bone_1_.png");
+game.preloadImage("Bone_2_.png");
+game.preloadImage("Bone_3_.png");
+game.preloadImage("Cemetery.png");
+game.preloadImage("Crate.png");
+game.preloadImage("Tile_5_.png");
+game.preloadImage("Tile_7_.png");
+game.preloadImage("Tile_8_.png");
+game.preloadImage("Tile_10_.png");
+game.preloadImage("Tile_11_.png");
+game.preloadImage("tileBottomCenter.png");
+game.preloadImage("tileBottomRight.png");
+game.preloadImage("tileFloatCenter.png");
+game.preloadImage("tileFloatLeft.png");
+game.preloadImage("tileFloatRight.png");
+game.preloadImage("tileTopCenter.png");
+game.preloadImage("tileTopLeft.png");
+game.preloadImage("tileTopRight.png");
+game.preloadImage("TombStone1.png");

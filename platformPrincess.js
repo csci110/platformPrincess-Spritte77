@@ -187,7 +187,7 @@ class Bat extends Sprite {
           this.attack();  
         }
         let now = game.getTime();
-        if(this.speed == this.normalSpeed) {
+        if(this.speed === this.normalSpeed) {
           if(now - this.angleTimer > 5)  {
             if (Math.random() < 0.5) this.angle = this.angle + 90;
             if (Math.random() >= 0.5) this.angle = this.angle + 180;
